@@ -12,6 +12,7 @@ async def handler(ws):
         msg = await ws.recv()
         data = json.loads(msg)
         role = data.get("role")
+        print(data)
         print(msg)  # <-- debug aquí
         if role == "mobile":
             MOBILE_CLIENTS.add(ws)
@@ -38,7 +39,7 @@ async def handler(ws):
         print("Client disconnected")
 
 async def main():
-    async with websockets.serve(handler, "0.0.0.0", 8080):
+    async with websockets.serve(handler, "0.0.0.0", 80):
         print("WebSocket server on ws://localhost:8080")
         await asyncio.Future()  # run forever
 
